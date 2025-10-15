@@ -1,0 +1,820 @@
+# AI + Blockchain Smart Healthcare Assistant
+## Complete Project Structure & File Organization
+
+---
+
+## 📁 Root Directory Structure
+
+```
+smart-healthcare-assistant/
+├── frontend/                      # React Frontend Application
+├── backend/                       # Node.js + Express Backend
+├── blockchain/                    # Smart Contracts & Blockchain Layer
+├── genai-service/                # GenAI Microservice (RAG + LLM)
+├── infrastructure/               # DevOps, Docker, CI/CD
+├── docs/                         # Documentation & Diagrams
+├── scripts/                      # Utility & Deployment Scripts
+├── tests/                        # End-to-End Testing
+├── synthetic-data/               # Demo Dataset (Synthetic PHI)
+├── .gitignore
+├── docker-compose.yml
+├── README.md
+└── LICENSE
+```
+
+---
+
+## 🎨 FRONTEND Structure (`frontend/`)
+
+```
+frontend/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── manifest.json
+│   └── robots.txt
+│
+├── src/
+│   ├── assets/                   # Images, icons, fonts
+│   │   ├── images/
+│   │   ├── icons/
+│   │   └── fonts/
+│   │
+│   ├── components/               # Reusable React Components
+│   │   ├── common/
+│   │   │   ├── Button/
+│   │   │   │   ├── Button.jsx
+│   │   │   │   ├── Button.test.js
+│   │   │   │   └── Button.styles.css
+│   │   │   ├── Input/
+│   │   │   ├── Modal/
+│   │   │   ├── Card/
+│   │   │   ├── Loader/
+│   │   │   ├── Alert/
+│   │   │   ├── Navbar/
+│   │   │   ├── Sidebar/
+│   │   │   └── Footer/
+│   │   │
+│   │   ├── auth/
+│   │   │   ├── LoginForm/
+│   │   │   ├── RegisterForm/
+│   │   │   ├── ForgotPassword/
+│   │   │   ├── MFASetup/
+│   │   │   └── OAuthButtons/
+│   │   │
+│   │   ├── patient/
+│   │   │   ├── PatientDashboard/
+│   │   │   ├── MedicalRecordUpload/
+│   │   │   ├── RecordViewer/
+│   │   │   ├── ConsentManager/
+│   │   │   ├── AppointmentBooking/
+│   │   │   ├── HealthTimeline/
+│   │   │   └── AccessControlPanel/
+│   │   │
+│   │   ├── doctor/
+│   │   │   ├── DoctorDashboard/
+│   │   │   ├── PatientList/
+│   │   │   ├── PatientRecordView/
+│   │   │   ├── AccessRequestForm/
+│   │   │   ├── PrescriptionWriter/
+│   │   │   ├── RecordSummaryView/
+│   │   │   └── AppointmentScheduler/
+│   │   │
+│   │   ├── genai/
+│   │   │   ├── SymptomCheckerChat/
+│   │   │   ├── ChatMessage/
+│   │   │   ├── HealthSuggestions/
+│   │   │   ├── ReportSummarizer/
+│   │   │   ├── LabResultExplainer/
+│   │   │   └── DisclaimerBanner/
+│   │   │
+│   │   ├── blockchain/
+│   │   │   ├── AuditLogViewer/
+│   │   │   ├── ConsentHistory/
+│   │   │   ├── DocumentVerifier/
+│   │   │   ├── HashDisplay/
+│   │   │   └── TransactionStatus/
+│   │   │
+│   │   └── admin/
+│   │       ├── AdminDashboard/
+│   │       ├── UserManagement/
+│   │       ├── SystemAnalytics/
+│   │       ├── AuditLogMonitor/
+│   │       └── ModelFeedbackPanel/
+│   │
+│   ├── pages/                    # Page-level Components
+│   │   ├── Home/
+│   │   ├── Login/
+│   │   ├── Register/
+│   │   ├── PatientPortal/
+│   │   ├── DoctorPortal/
+│   │   ├── AdminPortal/
+│   │   ├── SymptomChecker/
+│   │   ├── Records/
+│   │   ├── Appointments/
+│   │   ├── Profile/
+│   │   ├── Settings/
+│   │   ├── Help/
+│   │   ├── NotFound/
+│   │   └── Unauthorized/
+│   │
+│   ├── layouts/                  # Layout Wrappers
+│   │   ├── MainLayout/
+│   │   ├── AuthLayout/
+│   │   ├── PatientLayout/
+│   │   ├── DoctorLayout/
+│   │   └── AdminLayout/
+│   │
+│   ├── hooks/                    # Custom React Hooks
+│   │   ├── useAuth.js
+│   │   ├── useFileUpload.js
+│   │   ├── useBlockchain.js
+│   │   ├── useChat.js
+│   │   ├── useEncryption.js
+│   │   ├── useConsent.js
+│   │   ├── useDebounce.js
+│   │   └── useWebSocket.js
+│   │
+│   ├── context/                  # React Context API
+│   │   ├── AuthContext.jsx
+│   │   ├── ThemeContext.jsx
+│   │   ├── NotificationContext.jsx
+│   │   └── WebSocketContext.jsx
+│   │
+│   ├── redux/                    # Redux State Management
+│   │   ├── store.js
+│   │   ├── rootReducer.js
+│   │   ├── slices/
+│   │   │   ├── authSlice.js
+│   │   │   ├── patientSlice.js
+│   │   │   ├── doctorSlice.js
+│   │   │   ├── recordsSlice.js
+│   │   │   ├── appointmentsSlice.js
+│   │   │   ├── chatSlice.js
+│   │   │   └── blockchainSlice.js
+│   │   └── middleware/
+│   │       ├── apiMiddleware.js
+│   │       └── loggerMiddleware.js
+│   │
+│   ├── services/                 # API Service Layer
+│   │   ├── api.js               # Axios instance & interceptors
+│   │   ├── authService.js
+│   │   ├── patientService.js
+│   │   ├── doctorService.js
+│   │   ├── recordService.js
+│   │   ├── appointmentService.js
+│   │   ├── genaiService.js
+│   │   ├── blockchainService.js
+│   │   ├── uploadService.js
+│   │   └── notificationService.js
+│   │
+│   ├── utils/                    # Utility Functions
+│   │   ├── encryption.js        # Client-side encryption helpers
+│   │   ├── validation.js        # Form validation
+│   │   ├── fileHelpers.js       # File handling utilities
+│   │   ├── dateHelpers.js
+│   │   ├── formatters.js
+│   │   ├── constants.js
+│   │   ├── permissions.js
+│   │   └── errorHandler.js
+│   │
+│   ├── routes/                   # Route Configuration
+│   │   ├── AppRoutes.jsx
+│   │   ├── PrivateRoute.jsx
+│   │   ├── RoleBasedRoute.jsx
+│   │   └── routeConfig.js
+│   │
+│   ├── styles/                   # Global Styles
+│   │   ├── globals.css
+│   │   ├── tailwind.config.js
+│   │   ├── variables.css
+│   │   └── themes/
+│   │       ├── light.css
+│   │       └── dark.css
+│   │
+│   ├── App.jsx                   # Root Component
+│   ├── index.jsx                 # Entry Point
+│   └── setupTests.js             # Test Configuration
+│
+├── .env.development
+├── .env.production
+├── .eslintrc.json
+├── .prettierrc
+├── package.json
+├── package-lock.json
+├── tailwind.config.js
+├── postcss.config.js
+└── vite.config.js (or craco.config.js if using CRA)
+```
+
+---
+
+## ⚙️ BACKEND Structure (`backend/`)
+
+```
+backend/
+├── src/
+│   ├── config/                   # Configuration Files
+│   │   ├── database.js          # MongoDB connection
+│   │   ├── aws.js               # AWS S3 configuration
+│   │   ├── blockchain.js        # Web3/Ethers.js setup
+│   │   ├── redis.js             # Redis cache config
+│   │   ├── jwt.js               # JWT secrets & config
+│   │   ├── oauth.js             # OAuth2 providers
+│   │   └── constants.js
+│   │
+│   ├── models/                   # Mongoose Schemas
+│   │   ├── User.js
+│   │   ├── Patient.js
+│   │   ├── Doctor.js
+│   │   ├── Admin.js
+│   │   ├── MedicalRecord.js
+│   │   ├── Appointment.js
+│   │   ├── Prescription.js
+│   │   ├── Consent.js
+│   │   ├── AuditLog.js
+│   │   ├── AccessToken.js
+│   │   ├── EncryptionKey.js
+│   │   └── ChatHistory.js
+│   │
+│   ├── controllers/              # Route Controllers
+│   │   ├── authController.js
+│   │   ├── patientController.js
+│   │   ├── doctorController.js
+│   │   ├── adminController.js
+│   │   ├── recordController.js
+│   │   ├── appointmentController.js
+│   │   ├── consentController.js
+│   │   ├── chatController.js
+│   │   ├── uploadController.js
+│   │   └── blockchainController.js
+│   │
+│   ├── routes/                   # Express Routes
+│   │   ├── index.js             # Main router
+│   │   ├── authRoutes.js
+│   │   ├── patientRoutes.js
+│   │   ├── doctorRoutes.js
+│   │   ├── adminRoutes.js
+│   │   ├── recordRoutes.js
+│   │   ├── appointmentRoutes.js
+│   │   ├── consentRoutes.js
+│   │   ├── chatRoutes.js
+│   │   ├── uploadRoutes.js
+│   │   └── blockchainRoutes.js
+│   │
+│   ├── middleware/               # Express Middleware
+│   │   ├── auth.js              # JWT verification
+│   │   ├── roleCheck.js         # RBAC middleware
+│   │   ├── rateLimiter.js
+│   │   ├── errorHandler.js
+│   │   ├── validator.js         # Request validation
+│   │   ├── uploadMiddleware.js  # Multer configuration
+│   │   ├── encryption.js
+│   │   ├── logger.js            # Winston logger
+│   │   ├── cors.js
+│   │   └── sanitizer.js
+│   │
+│   ├── services/                 # Business Logic Layer
+│   │   ├── authService.js
+│   │   ├── patientService.js
+│   │   ├── doctorService.js
+│   │   ├── recordService.js
+│   │   ├── appointmentService.js
+│   │   ├── consentService.js
+│   │   ├── encryptionService.js
+│   │   ├── uploadService.js     # S3/IPFS upload logic
+│   │   ├── blockchainService.js # Smart contract interactions
+│   │   ├── genaiService.js      # GenAI API integration
+│   │   ├── emailService.js
+│   │   ├── smsService.js
+│   │   ├── notificationService.js
+│   │   └── auditService.js
+│   │
+│   ├── blockchain/               # Blockchain Integration
+│   │   ├── contractABI.json
+│   │   ├── contractAddress.json
+│   │   ├── web3Client.js
+│   │   ├── contractMethods.js
+│   │   ├── hashGenerator.js
+│   │   ├── signatureVerifier.js
+│   │   └── transactionQueue.js
+│   │
+│   ├── utils/                    # Utility Functions
+│   │   ├── encryption.js        # AES, RSA helpers
+│   │   ├── hashing.js           # SHA-256, HMAC
+│   │   ├── tokenGenerator.js
+│   │   ├── validators.js
+│   │   ├── fileParser.js        # CSV, HL7/FHIR parsers
+│   │   ├── dateUtils.js
+│   │   ├── errorFormatter.js
+│   │   └── constants.js
+│   │
+│   ├── queues/                   # Background Job Queues (Bull)
+│   │   ├── emailQueue.js
+│   │   ├── uploadQueue.js
+│   │   ├── blockchainQueue.js
+│   │   ├── aiInferenceQueue.js
+│   │   └── workers/
+│   │       ├── emailWorker.js
+│   │       ├── uploadWorker.js
+│   │       ├── blockchainWorker.js
+│   │       └── aiWorker.js
+│   │
+│   ├── jobs/                     # Scheduled Jobs (node-cron)
+│   │   ├── tokenCleanup.js
+│   │   ├── auditLogArchive.js
+│   │   ├── reminderNotifications.js
+│   │   └── healthCheck.js
+│   │
+│   ├── validators/               # Input Validation Schemas (Joi/Yup)
+│   │   ├── authValidators.js
+│   │   ├── patientValidators.js
+│   │   ├── doctorValidators.js
+│   │   ├── recordValidators.js
+│   │   └── consentValidators.js
+│   │
+│   ├── tests/                    # Unit & Integration Tests
+│   │   ├── unit/
+│   │   │   ├── services/
+│   │   │   ├── controllers/
+│   │   │   └── utils/
+│   │   └── integration/
+│   │       ├── auth.test.js
+│   │       ├── records.test.js
+│   │       ├── consent.test.js
+│   │       └── blockchain.test.js
+│   │
+│   ├── app.js                    # Express App Setup
+│   └── server.js                 # Server Entry Point
+│
+├── logs/                         # Application Logs
+│   ├── combined.log
+│   ├── error.log
+│   └── access.log
+│
+├── uploads/                      # Temporary Upload Directory
+│   └── .gitkeep
+│
+├── .env.development
+├── .env.production
+├── .env.test
+├── .eslintrc.json
+├── .prettierrc
+├── nodemon.json
+├── package.json
+├── package-lock.json
+├── jest.config.js
+└── tsconfig.json (if using TypeScript)
+```
+
+---
+
+## 🔗 BLOCKCHAIN Structure (`blockchain/`)
+
+```
+blockchain/
+├── contracts/                    # Solidity Smart Contracts
+│   ├── HealthRecordRegistry.sol # Main contract
+│   ├── ConsentManagement.sol
+│   ├── AccessControl.sol
+│   ├── AuditLog.sol
+│   └── interfaces/
+│       ├── IHealthRecord.sol
+│       └── IConsent.sol
+│
+├── migrations/                   # Truffle/Hardhat Migrations
+│   ├── 1_initial_migration.js
+│   ├── 2_deploy_registry.js
+│   └── 3_deploy_consent.js
+│
+├── test/                         # Smart Contract Tests
+│   ├── HealthRecordRegistry.test.js
+│   ├── ConsentManagement.test.js
+│   └── AccessControl.test.js
+│
+├── scripts/                      # Deployment & Utility Scripts
+│   ├── deploy.js
+│   ├── verify.js
+│   ├── interact.js
+│   ├── setupTestnet.js
+│   └── exportABI.js
+│
+├── artifacts/                    # Compiled Contracts (auto-generated)
+│   └── .gitkeep
+│
+├── abis/                         # Exported ABIs (for backend)
+│   ├── HealthRecordRegistry.json
+│   └── ConsentManagement.json
+│
+├── config/                       # Network Configurations
+│   ├── networks.js
+│   ├── testnet.json
+│   └── mainnet.json
+│
+├── .env.blockchain
+├── hardhat.config.js (or truffle-config.js)
+├── package.json
+└── README.md
+```
+
+---
+
+## 🤖 GENAI SERVICE Structure (`genai-service/`)
+
+```
+genai-service/
+├── src/
+│   ├── models/                   # AI Model Integration
+│   │   ├── llmClient.js         # OpenAI/HuggingFace client
+│   │   ├── symptomChecker.js
+│   │   ├── reportSummarizer.js
+│   │   ├── labExplainer.js
+│   │   └── healthAdvisor.js
+│   │
+│   ├── rag/                      # Retrieval Augmented Generation
+│   │   ├── vectorStore.js       # Weaviate/ElasticSearch/Pinecone
+│   │   ├── embeddings.js        # Text embeddings
+│   │   ├── retriever.js
+│   │   ├── documentProcessor.js
+│   │   └── chunker.js
+│   │
+│   ├── prompts/                  # Prompt Templates
+│   │   ├── symptomPrompts.js
+│   │   ├── summaryPrompts.js
+│   │   ├── explainerPrompts.js
+│   │   └── disclaimers.js
+│   │
+│   ├── controllers/
+│   │   ├── chatController.js
+│   │   ├── summaryController.js
+│   │   └── explainController.js
+│   │
+│   ├── routes/
+│   │   ├── chatRoutes.js
+│   │   ├── summaryRoutes.js
+│   │   └── explainRoutes.js
+│   │
+│   ├── services/
+│   │   ├── chatService.js
+│   │   ├── contextBuilder.js
+│   │   ├── responseFilter.js    # Safety filters
+│   │   ├── confidenceScorer.js
+│   │   └── feedbackCollector.js
+│   │
+│   ├── utils/
+│   │   ├── textProcessing.js
+│   │   ├── medicalTerms.js
+│   │   ├── redFlags.js          # High-risk symptom detection
+│   │   └── sanitizer.js
+│   │
+│   ├── data/                     # Reference Medical Data
+│   │   ├── symptoms.json
+│   │   ├── diseases.json
+│   │   ├── medications.json
+│   │   └── medicalKnowledge/
+│   │       └── .gitkeep
+│   │
+│   ├── middleware/
+│   │   ├── auth.js
+│   │   ├── rateLimiter.js
+│   │   └── validator.js
+│   │
+│   ├── tests/
+│   │   ├── chat.test.js
+│   │   ├── rag.test.js
+│   │   └── prompts.test.js
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── vector-db/                    # Vector Database Files
+│   └── .gitkeep
+│
+├── .env.genai
+├── package.json
+├── requirements.txt (if using Python modules)
+└── README.md
+```
+
+---
+
+## 🚀 INFRASTRUCTURE Structure (`infrastructure/`)
+
+```
+infrastructure/
+├── docker/
+│   ├── frontend.Dockerfile
+│   ├── backend.Dockerfile
+│   ├── genai.Dockerfile
+│   ├── blockchain.Dockerfile
+│   └── nginx.Dockerfile
+│
+├── kubernetes/                   # K8s Manifests (optional)
+│   ├── namespaces/
+│   ├── deployments/
+│   ├── services/
+│   ├── ingress/
+│   └── configmaps/
+│
+├── nginx/                        # Nginx Configuration
+│   ├── nginx.conf
+│   ├── ssl/
+│   └── sites-available/
+│
+├── terraform/                    # Infrastructure as Code (optional)
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── modules/
+│
+├── ansible/                      # Configuration Management (optional)
+│   ├── playbooks/
+│   └── inventory/
+│
+├── ci-cd/                        # CI/CD Pipelines
+│   ├── .github/
+│   │   └── workflows/
+│   │       ├── frontend-deploy.yml
+│   │       ├── backend-deploy.yml
+│   │       ├── blockchain-deploy.yml
+│   │       ├── genai-deploy.yml
+│   │       └── security-scan.yml
+│   │
+│   ├── .gitlab-ci.yml (if using GitLab)
+│   └── jenkins/
+│       └── Jenkinsfile
+│
+├── monitoring/                   # Monitoring & Observability
+│   ├── prometheus/
+│   │   └── prometheus.yml
+│   ├── grafana/
+│   │   └── dashboards/
+│   └── elk/                      # ElasticSearch, Logstash, Kibana
+│       ├── elasticsearch.yml
+│       ├── logstash.conf
+│       └── kibana.yml
+│
+└── scripts/
+    ├── setup-dev.sh
+    ├── setup-prod.sh
+    ├── backup.sh
+    └── restore.sh
+```
+
+---
+
+## 📚 DOCUMENTATION Structure (`docs/`)
+
+```
+docs/
+├── architecture/
+│   ├── system-architecture.md
+│   ├── data-flow-diagram.png
+│   ├── er-diagram.png
+│   ├── blockchain-architecture.md
+│   └── genai-pipeline.md
+│
+├── api/
+│   ├── api-documentation.md
+│   ├── postman-collection.json
+│   ├── swagger.yaml
+│   └── endpoints/
+│       ├── auth-endpoints.md
+│       ├── patient-endpoints.md
+│       ├── doctor-endpoints.md
+│       └── blockchain-endpoints.md
+│
+├── setup/
+│   ├── installation-guide.md
+│   ├── environment-setup.md
+│   ├── blockchain-setup.md
+│   ├── database-setup.md
+│   └── deployment-guide.md
+│
+├── user-guides/
+│   ├── patient-user-guide.md
+│   ├── doctor-user-guide.md
+│   └── admin-user-guide.md
+│
+├── technical/
+│   ├── encryption-strategy.md
+│   ├── smart-contract-spec.md
+│   ├── rag-implementation.md
+│   ├── security-checklist.md
+│   └── testing-strategy.md
+│
+├── presentation/
+│   ├── project-presentation.pptx
+│   ├── demo-script.md
+│   └── video-demo-link.txt
+│
+├── reports/
+│   ├── final-report.pdf
+│   ├── test-results.pdf
+│   └── security-audit.pdf
+│
+└── README.md
+```
+
+---
+
+## 🧪 SCRIPTS Structure (`scripts/`)
+
+```
+scripts/
+├── setup/
+│   ├── install-dependencies.sh
+│   ├── setup-database.sh
+│   ├── setup-blockchain.sh
+│   └── setup-genai.sh
+│
+├── deployment/
+│   ├── deploy-frontend.sh
+│   ├── deploy-backend.sh
+│   ├── deploy-blockchain.sh
+│   ├── deploy-genai.sh
+│   └── deploy-all.sh
+│
+├── database/
+│   ├── seed-database.js
+│   ├── migrate-up.js
+│   ├── migrate-down.js
+│   └── backup-db.sh
+│
+├── blockchain/
+│   ├── deploy-contracts.js
+│   ├── verify-contracts.js
+│   └── fund-testnet.js
+│
+├── testing/
+│   ├── run-unit-tests.sh
+│   ├── run-integration-tests.sh
+│   ├── run-e2e-tests.sh
+│   └── generate-test-coverage.sh
+│
+├── utilities/
+│   ├── generate-keys.js
+│   ├── encrypt-file.js
+│   ├── decrypt-file.js
+│   ├── hash-file.js
+│   └── validate-env.js
+│
+└── demo/
+    ├── create-demo-users.js
+    ├── populate-demo-data.js
+    └── reset-demo.js
+```
+
+---
+
+## 🧬 SYNTHETIC DATA Structure (`synthetic-data/`)
+
+```
+synthetic-data/
+├── patients/
+│   ├── patient-profiles.json
+│   ├── patient-credentials.json
+│   └── patient-keys.json
+│
+├── doctors/
+│   ├── doctor-profiles.json
+│   ├── doctor-credentials.json
+│   └── specializations.json
+│
+├── medical-records/
+│   ├── lab-reports/
+│   │   ├── blood-test-1.pdf
+│   │   ├── xray-report-1.pdf
+│   │   └── mri-scan-1.pdf
+│   ├── prescriptions/
+│   │   ├── prescription-1.pdf
+│   │   └── prescription-2.pdf
+│   └── discharge-summaries/
+│       ├── summary-1.pdf
+│       └── summary-2.pdf
+│
+├── appointments/
+│   └── appointments.json
+│
+├── chat-history/
+│   └── symptom-checker-logs.json
+│
+├── blockchain-records/
+│   ├── hashes.json
+│   ├── consent-logs.json
+│   └── access-logs.json
+│
+├── demo-scenarios/
+│   ├── scenario-1-patient-upload.md
+│   ├── scenario-2-doctor-access.md
+│   ├── scenario-3-symptom-checker.md
+│   └── scenario-4-consent-revoke.md
+│
+└── README.md
+```
+
+---
+
+## 🧪 TESTS Structure (`tests/`)
+
+```
+tests/
+├── e2e/                          # End-to-End Tests (Cypress/Playwright)
+│   ├── fixtures/
+│   ├── support/
+│   ├── specs/
+│   │   ├── auth.spec.js
+│   │   ├── patient-flow.spec.js
+│   │   ├── doctor-flow.spec.js
+│   │   ├── upload-record.spec.js
+│   │   ├── consent-management.spec.js
+│   │   └── symptom-checker.spec.js
+│   └── cypress.config.js (or playwright.config.js)
+│
+├── integration/
+│   ├── api/
+│   │   ├── auth.test.js
+│   │   ├── records.test.js
+│   │   ├── consent.test.js
+│   │   └── blockchain.test.js
+│   └── blockchain/
+│       ├── contract-interactions.test.js
+│       └── consent-flow.test.js
+│
+├── performance/                  # Load Testing (k6, Artillery)
+│   ├── load-test.js
+│   ├── stress-test.js
+│   └── spike-test.js
+│
+├── security/                     # Security Testing
+│   ├── penetration-tests/
+│   ├── vulnerability-scans/
+│   └── owasp-checklist.md
+│
+└── test-results/
+    ├── coverage/
+    ├── reports/
+    └── screenshots/
+```
+
+---
+
+## 🔐 Environment Variables Structure
+
+### `.env.development` (Root)
+```
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
+BACKEND_URL=http://localhost:5000
+GENAI_SERVICE_URL=http://localhost:8000
+BLOCKCHAIN_NETWORK=sepolia-testnet
+```
+
+### `.env.development` (Backend)
+```
+# Server
+PORT=5000
+NODE_ENV=development
+
+# Database
+MONGODB_URI=mongodb://localhost:27017/healthcare-dev
+MONGODB_TEST_URI=mongodb://localhost:27017/healthcare-test
+
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key
+JWT_REFRESH_SECRET=your-refresh-token-secret
+JWT_EXPIRE=15m
+JWT_REFRESH_EXPIRE=7d
+
+# AWS S3
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=healthcare-records-dev
+
+# Blockchain
+BLOCKCHAIN_NETWORK=sepolia
+BLOCKCHAIN_RPC_URL=https://sepolia.infura.io/v3/YOUR-PROJECT-ID
+PRIVATE_KEY=your-deployer-private-key
+CONTRACT_ADDRESS=0x...
+
+# GenAI Service
+GENAI_API_URL=http://localhost:8000
+GENAI_API_KEY=your-genai-service-key
+
+# OpenAI (if direct integration)
+OPENAI_API_KEY=sk-...
+OPENAI_MODEL=gpt-4
+
+# Email (SendGrid/Nodemailer)
+EMAIL_SERVICE=gmail
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
+
+# SMS (Twilio)
+TWILIO_ACCOUNT_SID=your-account-sid
