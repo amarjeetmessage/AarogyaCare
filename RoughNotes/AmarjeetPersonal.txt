@@ -818,3 +818,20 @@ EMAIL_PASSWORD=your-app-password
 
 # SMS (Twilio)
 TWILIO_ACCOUNT_SID=your-account-sid
+
+
+
+
+
+
+
+
+
+
+
+
+What we have made till now :
+
+                                    REACT:
+                                      /\
+                              Frontend  Backend
