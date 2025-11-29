@@ -41,6 +41,7 @@ export default function RegisterForm() {
           <input
             {...register("FirstName")}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Enter first name"
           />
           <p className="text-red-600 text-sm mt-1">
             {errors.FirstName?.message}
@@ -55,6 +56,7 @@ export default function RegisterForm() {
           <input
             {...register("LastName")}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Enter last name"
           />
           <p className="text-red-600 text-sm mt-1">
             {errors.LastName?.message}
@@ -80,6 +82,7 @@ export default function RegisterForm() {
             {...register("Email")}
             type="email"
             className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Enter your email address"
           />
           <p className="text-red-600 text-sm mt-1">{errors.Email?.message}</p>
         </div>
@@ -93,6 +96,7 @@ export default function RegisterForm() {
             {...register("Password")}
             type="password"
             className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Enter your password"
           />
           <p className="text-red-600 text-sm mt-1">
             {errors.Password?.message}
@@ -108,6 +112,7 @@ export default function RegisterForm() {
             {...register("ConfirmPassword")}
             type="password"
             className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            placeholder="Enter your password"
           />
           <p className="text-red-600 text-sm mt-1">
             {errors.ConfirmPassword?.message}
