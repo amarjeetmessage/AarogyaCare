@@ -9,7 +9,6 @@ import Login from './pages/Login.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
     < BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
