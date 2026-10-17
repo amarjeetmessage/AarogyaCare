@@ -1,1 +1,33 @@
-node_modules
+# Dependencies
+**/node_modules/
+
+# Production builds and coverage
+**/dist/
+**/build/
+**/coverage/
+
+# Environment files and secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs and runtime files
+**/*.log
+**/logs/
+**/tmp/
+**/.cache/
+
+# TypeScript and tooling caches
+**/.tsbuildinfo
+.eslintcache
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
