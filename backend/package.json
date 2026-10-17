@@ -7,13 +7,6 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "express": "^5.1.0",
-    "mongoose": "^9.0.0"
-=======
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test": "node --check server.js"
@@ -28,6 +21,5 @@
     "mongoose": "^9.0.0",
     "nodemailer": "^10.1.1",
     "zod": "^4.6.7"
->>>>>>> e6c3a6ba2f47ec74061ed3ca7217615339a27290
   }
 }
