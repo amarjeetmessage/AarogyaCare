@@ -1,218 +1,84 @@
 import { Link } from "react-router";
+import { DashboardAccountCard } from "../components/dashboard/DashboardAccountCard";
+import { DashboardHeader } from "../components/dashboard/DashboardHeader";
+import { DashboardNavigation } from "../components/dashboard/DashboardNavigation";
+import { DashboardSafetyNotice } from "../components/dashboard/DashboardSafetyNotice";
+import { DashboardFeatureGrid } from "../components/dashboard/DashboardFeatureGrid";
 import { useAuth } from "../context/AuthContext";
 
 export default function Home() {
-  const { user, logout } = useAuth();
-  const firstName = user?.firstName || "there";
+  const { user } = useAuth();
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-          <Link
-            to="/"
-            className="flex items-center gap-2 font-bold tracking-tight"
-          >
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-teal-700 text-sm text-white">
-              ✦
-            </span>
-            Aarogya<span className="-ml-2 text-teal-700">Care</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-slate-500 sm:block">
-              {user?.email}
-            </span>
-            <button
-              onClick={logout}
-              className="rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
-            >
-              Sign out
-            </button>
-          </div>
-        </div>
-      </header>
+      <DashboardHeader />
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[220px_1fr] lg:py-12">
-        <aside className="hidden lg:block">
-          <p className="px-3 text-xs font-bold tracking-[.15em] text-slate-400">
-            WORKSPACE
-          </p>
-          <nav className="mt-4 space-y-1 text-sm font-semibold">
-            <a
-              href="#overview"
-              className="flex items-center gap-3 rounded-lg bg-teal-50 px-3 py-2.5 text-teal-800"
-            >
-              ⌂ Overview
-            </a>
-            <Link
-              to="/chat"
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 transition hover:bg-white hover:text-slate-950"
-            >
-              ✦ Health Guide
-            </Link>
-            <a
-              href="#care-plan"
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 transition hover:bg-white hover:text-slate-950"
-            >
-              □ Care plan
-            </a>
-            <a
-              href="#resources"
-              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-slate-600 transition hover:bg-white hover:text-slate-950"
-            >
-              ◌ Resources
-            </a>
-          </nav>
-          <div className="mt-10 rounded-2xl bg-slate-900 p-5 text-white">
-            <p className="text-xs font-bold tracking-[.12em] text-teal-300">
-              YOUR SPACE
-            </p>
-            <p className="mt-3 text-sm leading-6 text-slate-300">
-              A private place to prepare for better care conversations.
-            </p>
-          </div>
-        </aside>
+        <DashboardNavigation />
         <section id="overview">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-bold text-teal-700">
-                {user?.role || "Patient"} workspace
-              </p>
-              <h1 className="mt-1 text-4xl font-semibold tracking-[-.04em] text-slate-950">
-                Good to see you, {firstName}.
-              </h1>
-              <p className="mt-3 max-w-xl leading-7 text-slate-600">
-                Here is a quiet place to organize questions, find helpful
-                resources, and decide what to do next.
-              </p>
-            </div>
-            <Link
-              to="/chat"
-              className="inline-flex shrink-0 items-center justify-center rounded-xl bg-teal-700 px-5 py-3 font-semibold text-white shadow-lg shadow-teal-700/15 transition hover:bg-teal-800"
-            >
-              Open Health Guide <span className="ml-2">→</span>
-            </Link>
-          </div>
+          <DashboardWelcome
+            firstName={user?.firstName || "there"}
+            role={user?.role || "Patient"}
+          />
           <div className="mt-8 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
-            <article className="rounded-3xl bg-slate-950 p-7 text-white sm:p-8">
-              <span className="inline-flex rounded-full bg-teal-400/15 px-3 py-1 text-xs font-bold text-teal-200">
-                YOUR NEXT STEP
-              </span>
-              <h2 className="mt-5 max-w-lg text-2xl font-semibold tracking-[-.03em]">
-                Bring more confidence to your next care conversation.
-              </h2>
-              <p className="mt-3 max-w-lg leading-7 text-slate-300">
-                Use Health Guide to turn a concern into a concise list of
-                questions and relevant details to share with a qualified
-                clinician.
-              </p>
-              <Link
-                to="/chat"
-                className="mt-7 inline-flex rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-teal-100"
-              >
-                Start a conversation
-              </Link>
-            </article>
-            <article className="rounded-3xl border border-slate-200 bg-white p-7">
-              <p className="text-xs font-bold tracking-[.14em] text-slate-400">
-                ACCOUNT STATUS
-              </p>
-              <div className="mt-7 flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full bg-teal-100 font-bold text-teal-700">
-                  {firstName.slice(0, 1).toUpperCase()}
-                </div>
-                <div>
-                  <p className="font-bold text-slate-950">
-                    {user?.firstName} {user?.lastName}
-                  </p>
-                  <p className="text-sm text-slate-500">{user?.email}</p>
-                </div>
-              </div>
-              <div className="mt-7 border-t border-slate-100 pt-5">
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-700">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500" />{" "}
-                  Secure session active
-                </span>
-              </div>
-              <Link
-                to="/profile"
-                className="mt-5 inline-flex text-sm font-semibold text-teal-700 hover:underline"
-              >
-                Manage account
-              </Link>
-            </article>
+            <DashboardNextStep />
+            <DashboardAccountCard user={user} />
           </div>
-          <div id="care-plan" className="mt-8 grid gap-5 md:grid-cols-3">
-            <Card
-              eyebrow="HEALTH GUIDE"
-              title="Start with a question"
-              body="Get general educational support and a clearer frame for your next step."
-              action="Open guide"
-              to="/chat"
-            />
-            <Card
-              eyebrow="CARE PREP"
-              title="Prepare for a visit"
-              body="Capture symptoms, questions, and observations to discuss with your care team."
-              action="Coming soon"
-            />
-            <Card
-              eyebrow="RESOURCES"
-              title="Learn at your pace"
-              body="Plain-language health information designed to help you ask better questions."
-              action="Explore platform"
-              to="/products"
-            />
-          </div>
-          <div
-            id="resources"
-            className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-6 text-amber-950"
-          >
-            <strong>Important:</strong> AarogyaCare provides educational support
-            only. It does not diagnose conditions or replace professional
-            medical care. For severe or life-threatening symptoms, contact local
-            emergency services immediately.
-          </div>
+          <DashboardFeatureGrid />
+          <DashboardSafetyNotice />
         </section>
       </div>
     </main>
   );
 }
 
-function Card({
-  eyebrow,
-  title,
-  body,
-  action,
-  to,
+function DashboardWelcome({
+  firstName,
+  role,
 }: {
-  eyebrow: string;
-  title: string;
-  body: string;
-  action: string;
-  to?: string;
+  firstName: string;
+  role: string;
 }) {
-  const content = (
-    <>
-      <p className="text-xs font-bold tracking-[.14em] text-teal-700">
-        {eyebrow}
-      </p>
-      <h2 className="mt-4 text-lg font-bold text-slate-950">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
-      <p className="mt-6 text-sm font-bold text-slate-800">
-        {action} <span className="ml-1">→</span>
-      </p>
-    </>
+  return (
+    <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p className="text-sm font-bold text-teal-700">{role} workspace</p>
+        <h1 className="mt-1 text-4xl font-semibold tracking-[-.04em] text-slate-950">
+          Good to see you, {firstName}.
+        </h1>
+        <p className="mt-3 max-w-xl leading-7 text-slate-600">
+          Here is a quiet place to organize questions, find helpful resources,
+          and decide what to do next.
+        </p>
+      </div>
+      <Link
+        to="/chat"
+        className="inline-flex shrink-0 items-center justify-center rounded-xl bg-teal-700 px-5 py-3 font-semibold text-white shadow-lg shadow-teal-700/15 transition hover:bg-teal-800"
+      >
+        Open Health Guide <span className="ml-2">→</span>
+      </Link>
+    </div>
   );
-  return to ? (
-    <Link
-      to={to}
-      className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-lg hover:shadow-slate-200/50"
-    >
-      {content}
-    </Link>
-  ) : (
-    <article className="rounded-2xl border border-slate-200 bg-white p-6 opacity-75">
-      {content}
+}
+
+function DashboardNextStep() {
+  return (
+    <article className="rounded-3xl bg-slate-950 p-7 text-white sm:p-8">
+      <span className="inline-flex rounded-full bg-teal-400/15 px-3 py-1 text-xs font-bold text-teal-200">
+        YOUR NEXT STEP
+      </span>
+      <h2 className="mt-5 max-w-lg text-2xl font-semibold tracking-[-.03em]">
+        Bring more confidence to your next care conversation.
+      </h2>
+      <p className="mt-3 max-w-lg leading-7 text-slate-300">
+        Use Health Guide to turn a concern into a concise list of questions and
+        relevant details to share with a qualified clinician.
+      </p>
+      <Link
+        to="/chat"
+        className="mt-7 inline-flex rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-teal-100"
+      >
+        Start a conversation
+      </Link>
     </article>
   );
 }
