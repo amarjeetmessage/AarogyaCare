@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { accessSecret } = require("../config");
 
-const sendError = (res, status, message) => res.status(status).json({ message });
+const sendError = (res, status, message) =>
+  res.status(status).json({ message });
 async function requireAuth(req, res, next) {
   try {
     const header = req.headers.authorization || "";
@@ -12,7 +13,9 @@ async function requireAuth(req, res, next) {
     req.user = await User.findById(req.auth.sub);
     if (!req.user) return sendError(res, 401, "User account no longer exists");
     next();
-  } catch (_) { return sendError(res, 401, "Invalid or expired access token"); }
+  } catch (_) {
+    return sendError(res, 401, "Invalid or expired access token");
+  }
 }
 
 module.exports = { requireAuth, sendError };

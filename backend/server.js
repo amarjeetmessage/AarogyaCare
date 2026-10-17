@@ -7,7 +7,10 @@ async function start() {
 }
 
 if (require.main === module) {
-  start().catch((error) => { console.error("Database connection failed", error.message); process.exit(1); });
+  start().catch((error) => {
+    console.error("Database connection failed", error.message);
+    process.exit(1);
+  });
 }
 
 module.exports = app;

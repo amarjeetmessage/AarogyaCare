@@ -2,13 +2,125 @@ import { Link } from "react-router";
 import SiteHeader from "../components/SiteHeader";
 
 const steps = [
-  ["01", "Ask in your own words", "Start with what is on your mind—symptoms, routines, questions, or a visit you want to prepare for."],
-  ["02", "Get a clearer frame", "Receive educational guidance and useful follow-up questions, with explicit safety boundaries."],
-  ["03", "Take the next right step", "Leave with a better-organized conversation for the people who care for you."],
+  [
+    "01",
+    "Ask in your own words",
+    "Start with what is on your mind—symptoms, routines, questions, or a visit you want to prepare for.",
+  ],
+  [
+    "02",
+    "Get a clearer frame",
+    "Receive educational guidance and useful follow-up questions, with explicit safety boundaries.",
+  ],
+  [
+    "03",
+    "Take the next right step",
+    "Leave with a better-organized conversation for the people who care for you.",
+  ],
 ];
 
 export default function Product() {
-  return <main className="min-h-screen bg-[#fcfdfc]"><SiteHeader /><section className="border-b border-slate-200 bg-linear-to-b from-teal-50 to-white"><div className="mx-auto max-w-5xl px-5 py-22 text-center sm:px-8 sm:py-28"><p className="text-sm font-bold tracking-[.16em] text-teal-700">AAROGYACARE HEALTH GUIDE</p><h1 className="mx-auto mt-5 max-w-4xl text-5xl font-semibold tracking-[-.055em] text-slate-950 sm:text-6xl">A more confident way to begin a health conversation.</h1><p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">Health Guide turns uncertainty into useful preparation—without pretending to diagnose, prescribe, or replace care from a qualified clinician.</p><div className="mt-9 flex justify-center"><Link to="/register" className="rounded-xl bg-teal-700 px-5 py-3.5 font-semibold text-white shadow-lg shadow-teal-700/20 transition hover:bg-teal-800">Try Health Guide</Link></div></div></section><section className="mx-auto max-w-7xl px-5 py-24 sm:px-8"><div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><p className="text-sm font-bold tracking-[.16em] text-teal-700">HOW IT HELPS</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] text-slate-950">Useful before, between, and after care moments.</h2></div><div className="grid gap-4">{steps.map(([number, title, body]) => <div key={number} className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-[72px_1fr]"><span className="text-lg font-bold text-teal-700">{number}</span><div><h3 className="text-lg font-bold text-slate-950">{title}</h3><p className="mt-2 leading-7 text-slate-600">{body}</p></div></div>)}</div></div></section><section className="bg-slate-100 py-20"><div className="mx-auto max-w-5xl px-5 sm:px-8"><div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-12"><p className="text-sm font-bold tracking-[.16em] text-teal-700">SAFETY FIRST</p><h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-slate-950">Built to support care—not substitute for it.</h2><div className="mt-8 grid gap-5 md:grid-cols-3"><Point title="No diagnosis" body="Health Guide provides general educational information, never a clinical diagnosis." /><Point title="Visible urgency" body="Potential emergency symptoms are directed to local emergency services immediately." /><Point title="Respectful by default" body="The experience avoids asking for unnecessary sensitive personal information." /></div></div></div></section><section className="mx-auto max-w-7xl px-5 py-24 text-center sm:px-8"><h2 className="text-4xl font-semibold tracking-[-.04em] text-slate-950">Start with a question. Leave with more clarity.</h2><Link to="/register" className="mt-8 inline-flex rounded-xl bg-slate-950 px-5 py-3.5 font-semibold text-white transition hover:bg-teal-700">Create your account</Link></section></main>;
+  return (
+    <main className="min-h-screen bg-[#fcfdfc]">
+      <SiteHeader />
+      <section className="border-b border-slate-200 bg-linear-to-b from-teal-50 to-white">
+        <div className="mx-auto max-w-5xl px-5 py-22 text-center sm:px-8 sm:py-28">
+          <p className="text-sm font-bold tracking-[.16em] text-teal-700">
+            AAROGYACARE HEALTH GUIDE
+          </p>
+          <h1 className="mx-auto mt-5 max-w-4xl text-5xl font-semibold tracking-[-.055em] text-slate-950 sm:text-6xl">
+            A more confident way to begin a health conversation.
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            Health Guide turns uncertainty into useful preparation—without
+            pretending to diagnose, prescribe, or replace care from a qualified
+            clinician.
+          </p>
+          <div className="mt-9 flex justify-center">
+            <Link
+              to="/register"
+              className="rounded-xl bg-teal-700 px-5 py-3.5 font-semibold text-white shadow-lg shadow-teal-700/20 transition hover:bg-teal-800"
+            >
+              Try Health Guide
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p className="text-sm font-bold tracking-[.16em] text-teal-700">
+              HOW IT HELPS
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] text-slate-950">
+              Useful before, between, and after care moments.
+            </h2>
+          </div>
+          <div className="grid gap-4">
+            {steps.map(([number, title, body]) => (
+              <div
+                key={number}
+                className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-6 sm:grid-cols-[72px_1fr]"
+              >
+                <span className="text-lg font-bold text-teal-700">
+                  {number}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-950">{title}</h3>
+                  <p className="mt-2 leading-7 text-slate-600">{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="bg-slate-100 py-20">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-12">
+            <p className="text-sm font-bold tracking-[.16em] text-teal-700">
+              SAFETY FIRST
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-slate-950">
+              Built to support care—not substitute for it.
+            </h2>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <Point
+                title="No diagnosis"
+                body="Health Guide provides general educational information, never a clinical diagnosis."
+              />
+              <Point
+                title="Visible urgency"
+                body="Potential emergency symptoms are directed to local emergency services immediately."
+              />
+              <Point
+                title="Respectful by default"
+                body="The experience avoids asking for unnecessary sensitive personal information."
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-5 py-24 text-center sm:px-8">
+        <h2 className="text-4xl font-semibold tracking-[-.04em] text-slate-950">
+          Start with a question. Leave with more clarity.
+        </h2>
+        <Link
+          to="/register"
+          className="mt-8 inline-flex rounded-xl bg-slate-950 px-5 py-3.5 font-semibold text-white transition hover:bg-teal-700"
+        >
+          Create your account
+        </Link>
+      </section>
+    </main>
+  );
 }
 
-function Point({ title, body }: { title: string; body: string }) { return <div className="rounded-2xl bg-slate-50 p-5 text-left"><div className="text-teal-700">●</div><h3 className="mt-5 font-bold text-slate-950">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{body}</p></div>; }
+function Point({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="rounded-2xl bg-slate-50 p-5 text-left">
+      <div className="text-teal-700">●</div>
+      <h3 className="mt-5 font-bold text-slate-950">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
+    </div>
+  );
+}

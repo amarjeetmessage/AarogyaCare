@@ -1,4 +1,3 @@
-
 import { Navigate, Route, Routes } from "react-router";
 import type { ReactNode } from "react";
 import { useAuth } from "./context/AuthContext";

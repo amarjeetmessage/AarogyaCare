@@ -2,11 +2,127 @@ import { Link } from "react-router";
 import SiteHeader from "../components/SiteHeader";
 
 const guides = [
-  ["Before a care appointment", "A simple framework for noticing changes, recording questions, and making the most of a consultation.", "Care preparation"],
-  ["Using Health Guide thoughtfully", "How to ask a useful question, add relevant context, and keep the result in perspective.", "Getting started"],
-  ["Knowing when to seek urgent help", "A reminder that severe or life-threatening symptoms need local emergency services, not an online conversation.", "Safety"],
+  [
+    "Before a care appointment",
+    "A simple framework for noticing changes, recording questions, and making the most of a consultation.",
+    "Care preparation",
+  ],
+  [
+    "Using Health Guide thoughtfully",
+    "How to ask a useful question, add relevant context, and keep the result in perspective.",
+    "Getting started",
+  ],
+  [
+    "Knowing when to seek urgent help",
+    "A reminder that severe or life-threatening symptoms need local emergency services, not an online conversation.",
+    "Safety",
+  ],
 ];
 
 export default function Resources() {
-  return <main className="min-h-screen bg-[#fcfdfc]"><SiteHeader /><section className="border-b border-slate-200 bg-teal-50"><div className="mx-auto max-w-5xl px-5 py-22 sm:px-8 sm:py-28"><p className="text-sm font-bold tracking-[.16em] text-teal-700">AAROGYACARE RESOURCES</p><h1 className="mt-5 max-w-3xl text-5xl font-semibold tracking-[-.055em] text-slate-950 sm:text-6xl">A better question can lead to a better conversation.</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">Plain-language guides for preparing, asking, and deciding what to do next. Educational information only—not medical advice.</p></div></section><section className="mx-auto max-w-7xl px-5 py-24 sm:px-8"><div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p className="text-sm font-bold tracking-[.16em] text-teal-700">START HERE</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] text-slate-950">Practical support for care moments.</h2></div><Link to="/products" className="text-sm font-bold text-teal-700 hover:text-teal-800">Explore Health Guide →</Link></div><div className="mt-12 grid gap-5 md:grid-cols-3">{guides.map(([title, body, category]) => <article key={title} className="flex min-h-72 flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-xl hover:shadow-teal-900/5"><p className="text-xs font-bold tracking-[.14em] text-teal-700">{category}</p><h3 className="mt-7 text-xl font-bold text-slate-950">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-600">{body}</p><Link to="/products/health-guide" className="mt-auto pt-7 text-sm font-bold text-slate-900 hover:text-teal-700">Read the guide →</Link></article>)}</div></section><section className="bg-slate-950 py-20 text-white"><div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-2"><div><p className="text-sm font-bold tracking-[.16em] text-teal-300">HEALTH GUIDE</p><h2 className="mt-4 text-4xl font-semibold tracking-[-.04em]">Start with what you know.</h2><p className="mt-5 max-w-lg leading-7 text-slate-300">You do not need perfect words. Explain what is changing or worrying you, and Health Guide can help you frame useful follow-up questions.</p></div><div className="rounded-2xl border border-white/10 bg-white/5 p-6"><p className="text-sm font-semibold text-teal-200">A useful starting point</p><p className="mt-4 text-lg leading-8 text-white">“I have noticed this change for a few weeks. What details would be helpful to share with a clinician?”</p><Link to="/register" className="mt-7 inline-flex rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-950 hover:bg-teal-100">Try Health Guide</Link></div></div></section><section className="mx-auto max-w-5xl px-5 py-24 sm:px-8"><div className="rounded-3xl border border-amber-200 bg-amber-50 p-8 sm:p-10"><p className="text-sm font-bold tracking-[.14em] text-amber-800">WHEN TO ACT NOW</p><h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-amber-950">Do not use online guidance for emergencies.</h2><p className="mt-4 max-w-3xl leading-7 text-amber-950/80">For chest pain, severe difficulty breathing, signs of stroke, severe allergic reaction, heavy bleeding, loss of consciousness, suicidal thoughts, or other severe symptoms, contact local emergency services immediately.</p></div></section></main>;
+  return (
+    <main className="min-h-screen bg-[#fcfdfc]">
+      <SiteHeader />
+      <section className="border-b border-slate-200 bg-teal-50">
+        <div className="mx-auto max-w-5xl px-5 py-22 sm:px-8 sm:py-28">
+          <p className="text-sm font-bold tracking-[.16em] text-teal-700">
+            AAROGYACARE RESOURCES
+          </p>
+          <h1 className="mt-5 max-w-3xl text-5xl font-semibold tracking-[-.055em] text-slate-950 sm:text-6xl">
+            A better question can lead to a better conversation.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            Plain-language guides for preparing, asking, and deciding what to do
+            next. Educational information only—not medical advice.
+          </p>
+        </div>
+      </section>
+      <section className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p className="text-sm font-bold tracking-[.16em] text-teal-700">
+              START HERE
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-.04em] text-slate-950">
+              Practical support for care moments.
+            </h2>
+          </div>
+          <Link
+            to="/products"
+            className="text-sm font-bold text-teal-700 hover:text-teal-800"
+          >
+            Explore Health Guide →
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {guides.map(([title, body, category]) => (
+            <article
+              key={title}
+              className="flex min-h-72 flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-teal-300 hover:shadow-xl hover:shadow-teal-900/5"
+            >
+              <p className="text-xs font-bold tracking-[.14em] text-teal-700">
+                {category}
+              </p>
+              <h3 className="mt-7 text-xl font-bold text-slate-950">{title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{body}</p>
+              <Link
+                to="/products/health-guide"
+                className="mt-auto pt-7 text-sm font-bold text-slate-900 hover:text-teal-700"
+              >
+                Read the guide →
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="bg-slate-950 py-20 text-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-2">
+          <div>
+            <p className="text-sm font-bold tracking-[.16em] text-teal-300">
+              HEALTH GUIDE
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-.04em]">
+              Start with what you know.
+            </h2>
+            <p className="mt-5 max-w-lg leading-7 text-slate-300">
+              You do not need perfect words. Explain what is changing or
+              worrying you, and Health Guide can help you frame useful follow-up
+              questions.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <p className="text-sm font-semibold text-teal-200">
+              A useful starting point
+            </p>
+            <p className="mt-4 text-lg leading-8 text-white">
+              “I have noticed this change for a few weeks. What details would be
+              helpful to share with a clinician?”
+            </p>
+            <Link
+              to="/register"
+              className="mt-7 inline-flex rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-950 hover:bg-teal-100"
+            >
+              Try Health Guide
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-5xl px-5 py-24 sm:px-8">
+        <div className="rounded-3xl border border-amber-200 bg-amber-50 p-8 sm:p-10">
+          <p className="text-sm font-bold tracking-[.14em] text-amber-800">
+            WHEN TO ACT NOW
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] text-amber-950">
+            Do not use online guidance for emergencies.
+          </h2>
+          <p className="mt-4 max-w-3xl leading-7 text-amber-950/80">
+            For chest pain, severe difficulty breathing, signs of stroke, severe
+            allergic reaction, heavy bleeding, loss of consciousness, suicidal
+            thoughts, or other severe symptoms, contact local emergency services
+            immediately.
+          </p>
+        </div>
+      </section>
+    </main>
+  );
 }

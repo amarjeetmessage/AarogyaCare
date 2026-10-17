@@ -10,9 +10,29 @@ const app = express();
 app.use(cors({ origin: clientUrl, credentials: true }));
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
-app.get("/", (_req, res) => res.json({ service: "AarogyaCare API", status: "ok" }));
+app.get("/", (_req, res) =>
+  res.json({ service: "AarogyaCare API", status: "ok" }),
+);
 app.get("/api/health", (_req, res) => res.json({ status: "ok" }));
-app.use("/api/auth", rateLimit({ windowMs: 15 * 60 * 1000, limit: 100, standardHeaders: "draft-8", legacyHeaders: false }), authRoutes);
-app.use("/api/chat", rateLimit({ windowMs: 60 * 1000, limit: 20, standardHeaders: "draft-8", legacyHeaders: false }), chatRoutes);
+app.use(
+  "/api/auth",
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 100,
+    standardHeaders: "draft-8",
+    legacyHeaders: false,
+  }),
+  authRoutes,
+);
+app.use(
+  "/api/chat",
+  rateLimit({
+    windowMs: 60 * 1000,
+    limit: 20,
+    standardHeaders: "draft-8",
+    legacyHeaders: false,
+  }),
+  chatRoutes,
+);
 
 module.exports = app;
