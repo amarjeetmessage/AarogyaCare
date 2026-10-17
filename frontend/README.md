@@ -16,7 +16,7 @@ The application is served at `http://localhost:5173` by default.
 Copy `.env.example` to `.env` and set the API address when it differs from the local default:
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:3000
 ```
 
 The backend must be running with MongoDB configured for registration, sign-in, password reset, and Health Guide conversations. Health Guide additionally requires a valid Gemini API key on the backend; no browser-side key is used.

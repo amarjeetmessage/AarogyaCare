@@ -7,7 +7,20 @@ const authRoutes = require("./routes/authRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
-app.use(cors({ origin: clientUrl, credentials: true }));
+const allowedOrigins = new Set([
+  clientUrl,
+  clientUrl.replace("localhost", "127.0.0.1"),
+  clientUrl.replace("127.0.0.1", "localhost"),
+]);
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.has(origin)) return callback(null, true);
+      return callback(new Error("Origin is not allowed"));
+    },
+    credentials: true,
+  }),
+);
 app.use(express.json({ limit: "10kb" }));
 app.use(cookieParser());
 app.get("/", (_req, res) =>

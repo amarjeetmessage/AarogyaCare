@@ -133,6 +133,12 @@ export default function Home() {
                   Secure session active
                 </span>
               </div>
+              <Link
+                to="/profile"
+                className="mt-5 inline-flex text-sm font-semibold text-teal-700 hover:underline"
+              >
+                Manage account
+              </Link>
             </article>
           </div>
           <div id="care-plan" className="mt-8 grid gap-5 md:grid-cols-3">

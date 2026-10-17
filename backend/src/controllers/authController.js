@@ -138,6 +138,48 @@ async function resetPassword(req, res) {
   res.json({ message: "Password reset successfully" });
 }
 
+async function updateProfile(req, res) {
+  const firstName = String(req.body.firstName || "").trim();
+  const lastName = String(req.body.lastName || "").trim();
+  if (firstName.length < 2 || firstName.length > 50)
+    return sendError(
+      res,
+      400,
+      "First name must be between 2 and 50 characters",
+    );
+  if (lastName.length < 2 || lastName.length > 50)
+    return sendError(res, 400, "Last name must be between 2 and 50 characters");
+
+  req.user.firstName = firstName;
+  req.user.lastName = lastName;
+  await req.user.save();
+  res.json({
+    user: publicUser(req.user),
+    message: "Profile updated successfully",
+  });
+}
+
+async function changePassword(req, res) {
+  const currentPassword = String(req.body.currentPassword || "");
+  const newPassword = String(req.body.newPassword || "");
+  if (!currentPassword || newPassword.length < 12)
+    return sendError(
+      res,
+      400,
+      "Current password and a 12-character new password are required",
+    );
+
+  const user = await User.findById(req.user._id).select("+passwordHash");
+  if (!user || !(await bcrypt.compare(currentPassword, user.passwordHash)))
+    return sendError(res, 401, "Current password is incorrect");
+
+  user.passwordHash = await bcrypt.hash(newPassword, 12);
+  user.refreshTokenVersion += 1;
+  await user.save();
+  clearRefreshCookie(res);
+  res.json({ message: "Password changed successfully. Please sign in again." });
+}
+
 module.exports = {
   register,
   login,
@@ -145,4 +187,6 @@ module.exports = {
   logout,
   forgotPassword,
   resetPassword,
+  updateProfile,
+  changePassword,
 };

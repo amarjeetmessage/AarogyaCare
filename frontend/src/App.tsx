@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import Chatbot from "./pages/Chatbot";
+import Profile from "./pages/Profile";
 
 function Protected({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -50,6 +51,14 @@ export default function App() {
         element={
           <Protected>
             <Chatbot />
+          </Protected>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Protected>
+            <Profile />
           </Protected>
         }
       />

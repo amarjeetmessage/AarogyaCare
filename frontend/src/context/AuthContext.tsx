@@ -11,6 +11,7 @@ type AuthContextValue = {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (data: Record<string, string>) => Promise<void>;
+  updateUser: (user: User) => void;
   logout: () => Promise<void>;
 };
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -42,13 +43,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setAccessToken(result.accessToken || null);
     setUser(result.user || null);
   };
+  const updateUser = (updatedUser: User) => setUser(updatedUser);
   const logout = async () => {
     await api("/api/auth/logout", { method: "POST" }).catch(() => {});
     setAccessToken(null);
     setUser(null);
   };
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, updateUser, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
